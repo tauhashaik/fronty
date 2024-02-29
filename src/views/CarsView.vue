@@ -2,52 +2,40 @@
     <div>
         <h1>Cars</h1>
         
-        <div  v-for="item in $store.state.product" :key="item.id"  class="card">
-  <b></b>
-  <div class="content">
-    <p class="title">Some Fomous<br><span>Creative Designer</span></p>
-    <ul class="sci">
-      <li>
-        1st link
-      </li>
+        <div class="card">
+                <b></b>
+            <div v-for="item in $store.state.product" :key="item.id" class="content">
+                <img :src=item.prodUrl>
+                <p class="title">Some Fomous<br><span>Creative Designer</span></p>
+                    <ul class="sci">
+                        <li>
+                            {{item.prodID}}
+                        </li>
 
-      <li>
-        2nd ink
-      </li>
-    </ul>
-  </div>
-</div>
+                        <li>
+                            {{ item.prodName }}
+                        </li>
+
+                        <li>
+                            {{ item.category }}
+                        </li>
+
+                        <li>
+                            {{ item.amount }}
+                        </li>
+                    </ul>
+            </div>
+        </div>
     </div>
+
 </template>
 <script>
 export default {
     data(){
-        return{
-        prodName: null,
-        quantity: null,
-        amount: null,
-        category: null,
-        prodUrl: null
-        }
+
     },
     methods:{
-        addProd(){
-            this.$store.dispatch('addProd',this.$data)
-        },
-        deleteProd(id){
-            this.$store.dispatch('deleteProd',id)
-        },
-        updateProd(id){
-            let edit = {
-                id:id,
-                prodName:this.prodName,
-                quantity:this.quantity,
-                amount:this.amount,
-                category:this.categpry,
-                prodUrl:this.prodUrl
-            }
-            this.$store.dispatch('updateProd',edit)
-        }
+        
     },
     computed:{
         getProduct(){
