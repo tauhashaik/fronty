@@ -8,7 +8,7 @@
         <button id="addButt" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add
         </button>
-        <table class="table table-dark">
+        <table class="table table-dark table-responsive">
             <tr>
                 <th style="color: white; background-color: gold;">id</th>
                 <th style="color: white; background-color: indigo;">prodName</th>
