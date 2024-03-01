@@ -67,9 +67,6 @@
   </div>
 </div>
 
-<!-- Button trigger modal -->
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div id="modalBody" class="modal-content">
@@ -101,6 +98,29 @@
     </div>
   </div>
 </div>
+
+<table class="table table-dark table-responsive">
+            <tr>
+                <th style="color: white; background-color: gold;">id</th>
+                <th style="color: white; background-color: indigo;">First Name</th>
+                <th style="color: white; background-color: gold;">Last Name</th>
+                <th style="color: white; background-color: indigo;">Age</th>
+                <th style="color: white; background-color: gold;">Gender</th>
+                <th style="color: white; background-color: indigo;">Email Address</th>
+                <th style="color: white; background-color: gold;">Password</th>
+                <th style="color: white; background-color: indigo;">Profile</th>
+              
+            </tr>
+            
+            <tr>
+                <td style = "color: white; background-color: indigo; padding-top: 40px">{{}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{}}</td>
+                <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">R{{}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{}}</td>
+                <td><button id="deleteButt">Delete</button></td>
+            </tr>   
+        </table>
         
     </div>
 </template>
