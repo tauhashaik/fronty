@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <footer id="foot">Kwagga{{ currentYear }}</footer>
+        <footer id="foot">copyright @ 2024</footer>
     </div>
 
 </template>
@@ -26,7 +26,8 @@ export default {
 }
 </script>
 <style>
-#footer{
+#foot{
     color: rgb(255, 255, 255);
+    padding: 20px;
 }
 </style>
