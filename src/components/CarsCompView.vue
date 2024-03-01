@@ -1,9 +1,9 @@
 <template>
 
-<input id="input" type="search" placeholder="search" aria-label="search" @input="explore()" v-model="search">
+<input id="input" type="search" placeholder="search" aria-label="search" @click="explore()" v-model="search">
 <button @click="sort()" id="butt2">SORT</button>
 
-  <div id="mainProd" class="row">
+  <div v-if="explore().length>0" id="mainProd" class="row">
     <div id="bodd" v-for="item in explore()" :key="item.id" class="col-lg-4">
       <div class="card h-100" style="width: 18rem; margin:10px;">
         <img :src="item.prodUrl" class="card-img-top">
@@ -16,33 +16,45 @@
       </div>
     </div>
   </div>
+  <div v-else> <spinner/></div>
 </template>
 
 <script>
+import sweet from 'sweetalert'
+import spinner from '../components/spinner.vue'
 export default {
-  data(){
-    return{
-      search:""
-    }
+  components: {
+    spinner,
+  },
+  data() {
+    return {
+      search: ""
+    };
   },
   methods: {
-    explore(){
-      let item = this.$store.state.product
-      let typed = this.search
-      let result = item.filter(s=>{
-        return s.prodName.toLowerCase().includes(typed.toLowerCase())
-      })
-      console.log(result);
-      return result
-    },
-    sort(){
-      let c = this.$store.state.product
-        if (c) {
-          c.sort((a, b) => a.amount - b.amount);
-        }
+    explore() {
+      let item = this.$store.state.product;
+      let typed = this.search;
+      let result = item.filter(s => {
+        return s.prodName.toLowerCase().includes(typed.toLowerCase());
+      });
+      if (result.length === 0) {
+        sweet({
+          title: "Error",
+          text: "Item not found"
+        });
       }
-}
-}
+      return result;
+    },
+    sort() {
+      let c = this.$store.state.product;
+      if (c) {
+        c.sort((a, b) => a.amount - b.amount);
+      }
+    }
+  }
+};
+
 </script>
 
 <style>

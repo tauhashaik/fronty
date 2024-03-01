@@ -8,7 +8,7 @@
         <button id="addButt" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add
         </button>
-        <table class="table table-dark table-responsive">
+        <table v-if="item in $store.state.product" :key="item.id" class="table table-dark table-responsive">
             <tr>
                 <th style="color: white; background-color: gold;">id</th>
                 <th style="color: white; background-color: indigo;">prodName</th>
@@ -64,6 +64,7 @@
 </div>
             </tr>   
         </table>
+        <div v-else><spinner/></div>
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,54 +138,87 @@
     </div>
 </template>
 <script>
-import userCompView from '../components/userCompView.vue'
-export default {
-    components:{
-        userCompView
-    },
-    data(){
-        return{
-        prodName: null,
-        quantity: null,
-        amount: null,
-        category: null,
-        prodUrl: null
-        }
-    },
-    methods:{
-        addProd(){
-            this.$store.dispatch('addProd',this.$data)
-        },
-        deleteProd(id){
-            this.$store.dispatch('deleteProd',id)
-        },
-        updateProd(id){
-            let edit = {
-                id:id,
-                prodName:this.prodName,
-                quantity:this.quantity,
-                amount:this.amount,
-                category:this.categpry,
-                prodUrl:this.prodUrl
-            }
-            this.$store.dispatch('updateProd',edit)
-        },
+import sweet from "sweetalert";
+import userCompView from '../components/userCompView.vue';
+import spinner from '../components/spinner.vue';
 
+export default {
+  components: {
+    userCompView,
+    spinner
+  },
+  data() {
+    return {
+      prodName: null,
+      quantity: null,
+      amount: null,
+      category: null,
+      prodUrl: null
+    };
+  },
+  methods: {
+    addProd() {
+      this.$store.dispatch('addProd', this.$data);
     },
-    computed:{
-        getProduct(){
-            this.$store.dispatch('getProduct')
-        },
-        getUser(){
-            this.$store.dispatch('getUser')
-        }
+    deleteProd(id) {
+      this.$store.dispatch('deleteProd', id)
+        .then(() => {
+          sweet({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true,
+          }).then(() => {
+            window.location.reload();
+          });
+        });
     },
-    mounted(){
-        this.getProduct,
-        this.getUser
+    updateProd(id) {
+      let edit = {
+        id: id,
+        prodName: this.prodName,
+        quantity: this.quantity,
+        amount: this.amount,
+        category: this.category, // Corrected typo
+        prodUrl: this.prodUrl
+      };
+      this.$store.dispatch('updateProd', edit)
+        .then(() => {
+          // Use SweetAlert for confirmation
+          sweet({
+            title: "Are you sure?",
+            text: "You will not be able to recover this file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: true,
+          }).then(() => {
+            // Reload the page after successful update
+            window.location.reload();
+          });
+        });
+    },
+  },
+  computed: {
+    getProduct() {
+      this.$store.dispatch('getProduct');
+    },
+    getUser() {
+      this.$store.dispatch('getUser');
     }
-}
+  },
+  mounted() {
+    this.getProduct;
+    this.getUser;
+  }
+};
 </script>
+
+
 <style scoped>
 #body{
     background-color: black;

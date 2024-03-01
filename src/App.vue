@@ -5,7 +5,7 @@
    <router-view/>
    <footerComp/>
    <!-- <videoPlayer/> -->
-   <spinner/>
+   <!-- <spinner/> -->
   </div>
     
    <body>
@@ -16,6 +16,7 @@
   import navbar from './components/navbar.vue';
   import footerComp from './components/footerComp.vue';
   // import videoPlayer from './components/videoPlayer.vue';
+  // import spinner from '../src/components/spinner.vue'
 
   export default{
 
@@ -23,6 +24,7 @@
       navbar,
       footerComp,
       // videoPlayer
+      // spinner
     }
   }
 </script>
