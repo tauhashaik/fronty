@@ -30,7 +30,7 @@ const routes = [
     path: '/cars',
     name: 'cars',
     component: CarsView
-  }
+  },
 ]
 
 const router = createRouter({

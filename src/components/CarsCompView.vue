@@ -1,6 +1,10 @@
 <template>
+
+<input id="input" type="search" placeholder="search" aria-label="search" @input="explore()" v-model="search">
+<button @click="sort()" id="butt2">SORT</button>
+
   <div id="mainProd" class="row">
-    <div id="bodd" v-for="item in $store.state.product" :key="item.id" class="col-lg-4">
+    <div id="bodd" v-for="item in explore()" :key="item.id" class="col-lg-4">
       <div class="card h-100" style="width: 18rem; margin:10px;">
         <img :src="item.prodUrl" class="card-img-top">
         <div class="card-body">
@@ -16,12 +20,44 @@
 
 <script>
 export default {
+  data(){
+    return{
+      search:""
+    }
+  },
+  methods: {
+    explore(){
+      let item = this.$store.state.product
+      let typed = this.search
+      let result = item.filter(s=>{
+        return s.prodName.toLowerCase().includes(typed.toLowerCase())
+      })
+      console.log(result);
+      return result
+    },
+    sort(){
+      let c = this.$store.state.product
+        if (c) {
+          c.sort((a, b) => a.amount - b.amount);
+        }
+      }
+}
 }
 </script>
 
 <style>
+
+#input{
+  margin-top: 200px;
+}
+
 #butt{
   background-color: black;
+  color: gold;
+}
+
+#butt2{
+  background-color: indigo;
   color: gold;
 }
 
@@ -36,7 +72,7 @@ export default {
   background-color: indigo;
   color: gold !important;
   box-shadow: indigo 0px 0px 30px;
-  gap: 50px !important;
+  /* gap: 50px !important; */
 }
 
 #mainProd {
@@ -44,7 +80,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
-  margin-top: 140px;
+  margin-top: 50px;
   margin-left: 90px;
 }
 
