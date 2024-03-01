@@ -61,6 +61,7 @@ export default createStore({
     async addUser({commit}, newUser){
       await axios.post(baseUrl+'/user/add',newUser);
       window.location.reload()
+      console.log(data)
     }
   },
   modules: {

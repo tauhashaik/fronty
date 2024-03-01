@@ -25,6 +25,7 @@
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.firstName}}</td>
                 <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.lastName}}</td>
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.userAge}}</td>
+                <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.gender}}</td>
                 <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.userRole}}</td>
                 <td style = "color: white; background-color: black; font-size: 20px; padding-top: 40px">{{item.emailAdd}}</td>
                 <td style = "color: white; background-color: indigo; font-size: 20px; padding-top: 40px">{{item.userPass}}</td>
@@ -45,29 +46,32 @@
       <div class="modal-body">
 
                 <p id= "modalP">First Name</p>
-                <input id="input1" placeholder="prodName" type="text" class="form-control" v-model="prodName" required>
+                <input id="input1" placeholder="First Name" type="text" class="form-control" v-model="firstName" required>
 
                 <p id= "modalP">Last Name</p>
-                <input id="input2" placeholder="quantity" type="number" class="form-control" v-model="quantity" required>
+                <input id="input2" placeholder="Last Name" type="text" class="form-control" v-model="lastName" required>
 
                 <p id= "modalP">User Age</p>
-                <input id="input3" placeholder="amount" type="number" class="form-control" v-model="amount" required>
+                <input id="input3" placeholder="User Age" type="number" class="form-control" v-model="userAge" required>
+
+                <p id= "modalP">Gender</p>
+                <input id="input3" placeholder="gender" type="text" class="form-control" v-model="gender" required>
 
                 <p id= "modalP">User Role</p>
-                <input id="input4" placeholder="category" type="text" class="form-control" v-model="category" required>
+                <input id="input4" placeholder="User Role" type="text" class="form-control" v-model="userRole" required>
 
                 <p id= "modalP">User Email</p>
-                <input id="input4" placeholder="prodUrl" type="text" class="form-control" v-model="prodUrl" required>
+                <input id="input4" placeholder="User Email" type="email" class="form-control" v-model="emailAdd" required>
 
                 <p id= "modalP">User Password</p>
-                <input id="input4" placeholder="prodUrl" type="text" class="form-control" v-model="prodUrl" required>
+                <input id="input4" placeholder="User Password" type="text" class="form-control" v-model="userPass" required>
 
                 <p id= "modalP">User Profile</p>
-                <input id="input4" placeholder="prodUrl" type="text" class="form-control" v-model="prodUrl" required>
+                <input id="input4" placeholder="User Profile" type="text" class="form-control" v-model="userProfile" required>
       </div>
       <div id="modalFoot" class="modal-footer">
         <button id="closeButt" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button @click= "addUserd()" id="saveButt" type="button" class="btn btn-primary">Save Product</button>
+        <button @click= "addUser()" id="saveButt" type="button" class="btn btn-primary">Save Product</button>
       </div>
     </div>
   </div>
@@ -81,6 +85,7 @@ export default {
         firstName: null,
         lastName: null,
         userAge: null,
+        gender: null,
         userRole: null,
         emailAdd: null,
         userPass: null,
